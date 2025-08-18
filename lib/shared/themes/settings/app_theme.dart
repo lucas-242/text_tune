@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:text_tune/shared/themes/themes.dart';
 
-abstract class AppThemeSettings {
+abstract class AppTheme {
   static const pageTransitionsTheme = PageTransitionsTheme(
     builders: <TargetPlatform, PageTransitionsBuilder>{
       TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
@@ -47,12 +47,12 @@ abstract class AppThemeSettings {
   static ColorScheme _getColorScheme(Brightness brightness) =>
       ColorScheme.fromSeed(
         brightness: brightness,
-        seedColor: AppColors.primary,
-        primary: AppColors.primary,
+        seedColor: AppColors.greenDark,
+        primary: AppColors.greenDark,
         surface: AppColors.background,
-        onSurface: AppColors.darkGrey,
+        onSurface: AppColors.greenDark,
         outline: AppColors.stroke,
-        error: AppColors.red,
+        error: AppColors.error,
       );
 
   static CardThemeData _cardTheme() => CardThemeData(
@@ -68,10 +68,10 @@ abstract class AppThemeSettings {
 
   static AppBarTheme _appBarTheme(ColorScheme colors) => AppBarTheme(
         elevation: 1,
-        shadowColor: AppColors.black.withAlpha(100),
+        shadowColor: Colors.black.withAlpha(100),
         backgroundColor: AppColors.white,
         surfaceTintColor: AppColors.white,
-        foregroundColor: AppColors.grey,
+        foregroundColor: AppColors.textLight,
         titleTextStyle: AppTextStyles.headlineLg,
       );
 
@@ -137,7 +137,7 @@ abstract class AppThemeSettings {
   static OutlinedButtonThemeData _outlinedButtonTheme(ColorScheme colors) =>
       OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: AppColors.darkGrey),
+          side: const BorderSide(color: AppColors.stroke),
         ),
       );
 
@@ -162,9 +162,9 @@ abstract class AppThemeSettings {
     return InputDecorationTheme(
       labelStyle: AppTextStyles.labelLg,
       hintStyle: AppTextStyles.labelLg,
-      iconColor: AppColors.grey,
-      prefixIconColor: AppColors.grey,
-      suffixIconColor: AppColors.grey,
+      iconColor: AppColors.stroke,
+      prefixIconColor: AppColors.stroke,
+      suffixIconColor: AppColors.stroke,
       floatingLabelBehavior: FloatingLabelBehavior.never,
       filled: true,
       fillColor: colors.surface,
@@ -203,7 +203,7 @@ abstract class AppThemeSettings {
         padding: const EdgeInsets.all(AppInsets.sm),
         backgroundColor: AppColors.white,
         surfaceTintColor: AppColors.white,
-        selectedColor: AppColors.primary.withAlpha(130),
+        selectedColor: AppColors.greenDark.withAlpha(130),
         labelStyle: AppTextStyles.md,
         secondaryLabelStyle: AppTextStyles.titleSm, //selected
         side: const BorderSide(color: AppColors.stroke),
