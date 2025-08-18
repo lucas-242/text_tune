@@ -4,6 +4,7 @@ abstract class AppColors {
   static const background = Color(0xFFF9FAFB);
   static const greenDark = Color(0xFF1B5E20);
   static const white = Color(0xFFFFFFFF);
+  static const black = Color(0xFF1F1F1F);
 
   // accent
   static const greenLight = Color(0xFF4CAF50);

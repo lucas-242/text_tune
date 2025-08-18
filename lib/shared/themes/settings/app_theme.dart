@@ -14,7 +14,7 @@ abstract class AppTheme {
   );
 
   static ShapeBorder get defaultShape => RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppInsets.md),
+        borderRadius: BorderRadius.circular(15),
         side: const BorderSide(color: AppColors.stroke),
       );
 
@@ -31,7 +31,8 @@ abstract class AppTheme {
       bottomNavigationBarTheme: _bottomNavigationBarTheme(colors),
       bottomSheetTheme: _bottomSheetTheme(colors),
       floatingActionButtonTheme: _floatingActionButtonTheme(colors),
-      outlinedButtonTheme: _outlinedButtonTheme(colors),
+      outlinedButtonTheme: _outlinedButtonTheme(),
+      elevatedButtonTheme: _elevatedButtonTheme(),
       dividerTheme: _dividerTheme(colors),
       navigationRailTheme: _navigationRailTheme(colors),
       tabBarTheme: _tabBarTheme(colors),
@@ -50,7 +51,8 @@ abstract class AppTheme {
         seedColor: AppColors.greenDark,
         primary: AppColors.greenDark,
         surface: AppColors.background,
-        onSurface: AppColors.greenDark,
+        onSurface: AppColors.textLight,
+        onPrimary: AppColors.white,
         outline: AppColors.stroke,
         error: AppColors.error,
       );
@@ -134,16 +136,29 @@ abstract class AppTheme {
         ),
       );
 
-  static OutlinedButtonThemeData _outlinedButtonTheme(ColorScheme colors) =>
+  static OutlinedButtonThemeData _outlinedButtonTheme() =>
       OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColors.stroke),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppInsets.sm),
+          ),
+        ),
+      );
+
+  static ElevatedButtonThemeData _elevatedButtonTheme() =>
+      ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(double.infinity, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppInsets.sm),
+          ),
         ),
       );
 
   static DividerThemeData _dividerTheme(ColorScheme colors) =>
       const DividerThemeData(
-        color: AppColors.background,
+        color: AppColors.stroke,
         thickness: 1,
         indent: 0,
         endIndent: 0,
