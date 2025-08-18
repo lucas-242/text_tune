@@ -1,33 +1,30 @@
 class AppUser {
   const AppUser({
-    required this.uid,
+    required this.id,
     required this.email,
-    this.displayName,
+    this.name,
     this.photoURL,
     this.phoneNumber,
-    required this.emailVerified,
     this.createdAt,
     this.lastSignIn,
   });
 
   factory AppUser.fromFirebaseUser(dynamic firebaseUser) => AppUser(
-        uid: firebaseUser.uid,
+        id: firebaseUser.uid,
         email: firebaseUser.email ?? '',
-        displayName: firebaseUser.displayName,
+        name: firebaseUser.displayName,
         photoURL: firebaseUser.photoURL,
         phoneNumber: firebaseUser.phoneNumber,
-        emailVerified: firebaseUser.emailVerified,
         createdAt: firebaseUser.metadata.creationTime,
         lastSignIn: firebaseUser.metadata.lastSignInTime,
       );
 
   factory AppUser.fromMap(Map<String, dynamic> map) => AppUser(
-        uid: map['uid'] ?? '',
+        id: map['uid'] ?? '',
         email: map['email'] ?? '',
-        displayName: map['displayName'],
+        name: map['displayName'],
         photoURL: map['photoURL'],
         phoneNumber: map['phoneNumber'],
-        emailVerified: map['emailVerified'] ?? false,
         createdAt: map['createdAt'] != null
             ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
             : null,
@@ -36,57 +33,52 @@ class AppUser {
             : null,
       );
 
-  final String uid;
+  final String id;
   final String email;
-  final String? displayName;
+  final String? name;
   final String? photoURL;
   final String? phoneNumber;
-  final bool emailVerified;
   final DateTime? createdAt;
   final DateTime? lastSignIn;
 
   Map<String, dynamic> toMap() => {
-        'uid': uid,
+        'uid': id,
         'email': email,
-        'displayName': displayName,
+        'displayName': name,
         'photoURL': photoURL,
         'phoneNumber': phoneNumber,
-        'emailVerified': emailVerified,
         'createdAt': createdAt?.millisecondsSinceEpoch,
         'lastSignIn': lastSignIn?.millisecondsSinceEpoch,
       };
 
   AppUser copyWith({
-    String? uid,
+    String? id,
     String? email,
-    String? displayName,
+    String? name,
     String? photoURL,
     String? phoneNumber,
-    bool? emailVerified,
     DateTime? createdAt,
     DateTime? lastSignIn,
   }) =>
       AppUser(
-        uid: uid ?? this.uid,
+        id: id ?? this.id,
         email: email ?? this.email,
-        displayName: displayName ?? this.displayName,
+        name: name ?? this.name,
         photoURL: photoURL ?? this.photoURL,
         phoneNumber: phoneNumber ?? this.phoneNumber,
-        emailVerified: emailVerified ?? this.emailVerified,
         createdAt: createdAt ?? this.createdAt,
         lastSignIn: lastSignIn ?? this.lastSignIn,
       );
 
   @override
-  String toString() =>
-      'AppUser(uid: $uid, email: $email, displayName: $displayName)';
+  String toString() => 'AppUser(id: $id, email: $email, displayName: $name)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is AppUser && other.uid == uid;
+    return other is AppUser && other.id == id;
   }
 
   @override
-  int get hashCode => uid.hashCode;
+  int get hashCode => id.hashCode;
 }
